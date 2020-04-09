@@ -22,4 +22,4 @@ jobs:
     - name: Docker publish
       run: |
         docker login -u ${{ secrets.DOCKERHUB_USER }} -p ${{ secrets.DOCKERHUB_PASSWORD }} ${{ secrets.DOCKER_REPOSITORY }}
-        sbt -Ddocker.username=${{ secrets.DOCKERHUB_USER }} -Ddocker.repository=${{ secrets.DOCKER_REPOSITORY }} docker:publish
+        sbt -Ddocker.organization=arajoa -Ddocker.repository=${{ secrets.DOCKER_REPOSITORY }} docker:publish
