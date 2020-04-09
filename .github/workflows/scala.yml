@@ -23,4 +23,6 @@ jobs:
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USER }}
         DOCKER_REPOSITORY: ${{ secrets.DOCKER_REPOSITORY }}
-      run: docker login -e ${{ secrets.DOCKERHUB_EMAIL }} -p ${{ secrets.DOCKERHUB_PASSWORD }} -u ${{ secrets.DOCKERHUB_USER }};sbt docker:publish
+      run: |
+        docker login -u ${{ secrets.DOCKERHUB_USER }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+        sbt docker:publish
