@@ -11,8 +11,8 @@ enablePlugins(DockerPlugin)
 dockerExposedPorts ++= Seq(8080)
 dockerBaseImage := "openjdk:11.0.6-jre"
 
-dockerUsername   := sys.props.get("DOCKER_USERNAME")
-dockerRepository := sys.props.get("DOCKER_REPOSITORY")
+dockerUsername   := sys.props.get("docker.username")
+dockerRepository := sys.props.get("docker.repository")
 
 libraryDependencies ++= Seq(
   "com.github.finagle" %% "finchx-core"   % "0.32.1",
