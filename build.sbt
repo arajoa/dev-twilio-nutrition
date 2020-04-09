@@ -13,3 +13,16 @@ libraryDependencies ++= Seq(
   "org.typelevel"      %% "cats-effect"   % "2.1.2",
   "org.scalatest"      %% "scalatest"     % "3.1.1" % "test"
 )
+
+// Docker config
+
+mainClass in Compile := Some("io.arajoa.hackathon.Main")
+enablePlugins(JavaAppPackaging)
+enablePlugins(DockerPlugin)
+
+dockerExposedPorts ++= Seq(8080)
+dockerBaseImage := "openjdk:11.0.6-jre"
+
+dockerUsername     := sys.props.get("docker.organization")
+dockerRepository   := sys.props.get("docker.repository")
+dockerUpdateLatest := true
