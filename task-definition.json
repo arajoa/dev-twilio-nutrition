@@ -1,4 +1,5 @@
 {
+  "executionRoleArn": "arn:aws:iam::264951780651:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
       "logConfiguration": {
