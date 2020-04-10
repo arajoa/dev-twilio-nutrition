@@ -11,10 +11,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Extract branch name
-      shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-      id: extract_branch
 
     - name: Set up JDK 11
       uses: actions/setup-java@v1
@@ -27,4 +23,4 @@ jobs:
     - name: Docker publish
       run: |
         docker login -u ${{ secrets.DOCKERHUB_USER }} -p ${{ secrets.DOCKERHUB_PASSWORD }} ${{ secrets.DOCKER_REPOSITORY }}
-        sbt -Ddocker.tags.branch=${{ steps.extract_branch.outputs.branch }} -Ddocker.organization=arajoa -Ddocker.repository=${{ secrets.DOCKER_REPOSITORY }} docker:publish
+        sbt -Ddocker.tags.name=${{ GITHUB_RUN_ID }} -Ddocker.organization=arajoa -Ddocker.repository=${{ secrets.DOCKER_REPOSITORY }} docker:publish

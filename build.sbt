@@ -1,4 +1,4 @@
-lazy val branch = sys.props.get("docker.tags.branch")
+lazy val dockerTag = sys.props.get("docker.tags.name")
 
 lazy val root = project
   .in(file("."))
@@ -16,12 +16,12 @@ lazy val root = project
     dockerBaseImage    := "openjdk:11.0.6-jre",
     dockerRepository   := sys.props.get("docker.repository"),
     dockerUsername     := sys.props.get("docker.organization"),
-    dockerUpdateLatest := branch.isEmpty,
+    dockerUpdateLatest := dockerTag.isEmpty,
     dockerAlias := DockerAlias(
       registryHost = dockerRepository.value,
       username     = dockerUsername.value,
       name         = name.value,
-      tag          = branch.orElse(Some(version.value))
+      tag          = dockerTag.orElse(Some(version.value))
     )
   )
 
