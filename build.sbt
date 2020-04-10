@@ -23,6 +23,8 @@ enablePlugins(DockerPlugin)
 dockerExposedPorts ++= Seq(8080)
 dockerBaseImage := "openjdk:11.0.6-jre"
 
-dockerUsername     := sys.props.get("docker.organization")
-dockerRepository   := sys.props.get("docker.repository")
-dockerUpdateLatest := true
+dockerUsername   := sys.props.get("docker.organization")
+dockerRepository := sys.props.get("docker.repository")
+dockerUpdateLatest := sys.props
+  .get("docker.tags.updateLatest")
+  .exists(_.equalsIgnoreCase("true"))
