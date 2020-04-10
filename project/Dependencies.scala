@@ -2,11 +2,11 @@ import sbt._
 
 object Version {
 
-  val finchx       = "0.32.1"
-  val circe        = "0.13.0"
-  val cats         = "2.1.1"
-  val catsEffect   = "2.1.1"
-  val scalaTest    = "3.1.1"
+  val finchx     = "0.32.1"
+  val circe      = "0.13.0"
+  val cats       = "2.1.1"
+  val catsEffect = "2.1.1"
+  val scalaTest  = "3.1.1"
 }
 
 object Library {
@@ -17,6 +17,5 @@ object Library {
   val circeGeneric = "io.circe"           %% "circe-generic" % Version.circe
   val cats         = "org.typelevel"      %% "cats-core"     % Version.cats
   val catsEffect   = "org.typelevel"      %% "cats-effect"   % Version.catsEffect
-
-  val scalaTest = "org.scalatest" %% "scalatest" % Version.scalaTest % Test
+  val scalaTest    = "org.scalatest"      %% "scalatest"     % Version.scalaTest % Test
 }
