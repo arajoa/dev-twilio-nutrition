@@ -1,3 +1,5 @@
+lazy val branch = sys.props.get("docker.tags.branch")
+
 lazy val root = project
   .in(file("."))
   .settings(
@@ -12,11 +14,15 @@ lazy val root = project
   .settings(
     dockerExposedPorts ++= Seq(8080),
     dockerBaseImage    := "openjdk:11.0.6-jre",
-    dockerUsername     := sys.props.get("docker.organization"),
     dockerRepository   := sys.props.get("docker.repository"),
-    dockerUpdateLatest := sys.props
-      .get("docker.tags.updateLatest")
-      .exists(_.equalsIgnoreCase("true"))
+    dockerUsername     := sys.props.get("docker.organization"),
+    dockerUpdateLatest := branch.isEmpty,
+    dockerAlias := DockerAlias(
+      registryHost = dockerRepository.value,
+      username     = dockerUsername.value,
+      name         = name.value,
+      tag          = branch.orElse(Some(version.value))
+    )
   )
 
 lazy val appDependencies = Seq(
