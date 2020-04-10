@@ -25,5 +25,5 @@ jobs:
         with:
           task-definition: task-definition.json
           service: paniadri-service
-          cluster: arn:aws:ecs:eu-west-2:264951780651:cluster/default2
+          cluster: default2
           wait-for-service-stability: true
