@@ -14,7 +14,9 @@ lazy val root = project
     dockerBaseImage    := "openjdk:11.0.6-jre",
     dockerUsername     := sys.props.get("docker.organization"),
     dockerRepository   := sys.props.get("docker.repository"),
-    dockerUpdateLatest := true
+    dockerUpdateLatest := sys.props
+      .get("docker.tags.updateLatest")
+      .exists(_.equalsIgnoreCase("true"))
   )
 
 lazy val appDependencies = Seq(
