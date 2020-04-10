@@ -23,4 +23,4 @@ jobs:
     - name: Docker publish
       run: |
         docker login -u ${{ secrets.DOCKERHUB_USER }} -p ${{ secrets.DOCKERHUB_PASSWORD }} ${{ secrets.DOCKER_REPOSITORY }}
-        sbt -Ddocker.tags.name=${{ GITHUB_RUN_ID }} -Ddocker.organization=arajoa -Ddocker.repository=${{ secrets.DOCKER_REPOSITORY }} docker:publish
+        sbt -Ddocker.tags.name=${GITHUB_RUN_ID} -Ddocker.organization=arajoa -Ddocker.repository=${{ secrets.DOCKER_REPOSITORY }} docker:publish
