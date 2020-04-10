@@ -1,11 +1,21 @@
-name := "dev-twilio-nutrition"
-
-version := "0.1"
-
-scalaVersion := "2.12.11"
-
-libraryDependencies ++= appDependencies
-libraryDependencies ++= testDependencies
+lazy val root = project
+  .in(file("."))
+  .settings(
+    name                 := "dev-twilio-nutrition",
+    version              := "0.1",
+    scalaVersion         := "2.12.11",
+    mainClass in Compile := Some("io.arajoa.hackathon.Main"),
+    libraryDependencies ++= appDependencies,
+    libraryDependencies ++= testDependencies
+  )
+  .enablePlugins(JavaAppPackaging, DockerPlugin)
+  .settings(
+    dockerExposedPorts ++= Seq(8080),
+    dockerBaseImage    := "openjdk:11.0.6-jre",
+    dockerUsername     := sys.props.get("docker.organization"),
+    dockerRepository   := sys.props.get("docker.repository"),
+    dockerUpdateLatest := true
+  )
 
 lazy val appDependencies = Seq(
   Library.finchx,
@@ -19,16 +29,3 @@ lazy val appDependencies = Seq(
 lazy val testDependencies = Seq(
   Library.scalaTest
 )
-
-// Docker config
-
-mainClass in Compile := Some("io.arajoa.hackathon.Main")
-enablePlugins(JavaAppPackaging)
-enablePlugins(DockerPlugin)
-
-dockerExposedPorts ++= Seq(8080)
-dockerBaseImage := "openjdk:11.0.6-jre"
-
-dockerUsername     := sys.props.get("docker.organization")
-dockerRepository   := sys.props.get("docker.repository")
-dockerUpdateLatest := true
