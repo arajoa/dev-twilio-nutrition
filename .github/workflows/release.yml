@@ -1,8 +1,8 @@
-on:
-  pull_request:
-    branches: [ master ]
-
 name: Deploy to Amazon ECS
+
+on:
+  release:
+    types: [created]
 
 jobs:
   deploy:
