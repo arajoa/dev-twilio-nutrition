@@ -26,12 +26,13 @@ lazy val root = project
   )
 
 lazy val appDependencies = Seq(
-  Library.finchx,
-  Library.finchXCirce,
+  Library.cats,
+  Library.catsEffect,
   Library.circe,
   Library.circeGeneric,
-  Library.cats,
-  Library.catsEffect
+  Library.finchx,
+  Library.finchXCirce,
+  Library.twilio
 )
 
 lazy val testDependencies = Seq(
